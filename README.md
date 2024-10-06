@@ -1,6 +1,6 @@
 # Color Mate
 
-Color mate is a chrome extension that allows designers ato save and mix colors.
+ColorMate is a chrome extension that allows designers to save and mix colors.
 
 The project is developed with React, TypeScript and Go.
 
