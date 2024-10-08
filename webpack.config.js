@@ -1,59 +1,52 @@
-const path = require("path");
-const HTMLPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin")
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-    entry: {
-        index: "./src/index.tsx"
-    },
-    mode: "production",
-    module: {
-        rules: [
-            {
-              test: /\.tsx?$/,
-               use: [
-                 {
-                  loader: "ts-loader",
-                   options: {
-                     compilerOptions: { noEmit: false },
-                    }
-                  }],
-               exclude: /node_modules/,
-            },
-            {
-              exclude: /node_modules/,
-              test: /\.css$/i,
-               use: [
-                  "style-loader",
-                  "css-loader"
-               ]
-            },
+  mode: 'development',
+  entry: {
+    background: './src/background/background.ts',
+    content: './src/content/content.ts',
+    popup: './src/popup/popup.ts',
+    styles: './src/styles.css',
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
         ],
-    },
-    plugins: [
-        new CopyPlugin({
-            patterns: [
-                { from: "manifest.json", to: "../manifest.json" },
-            ],
-        }),
-        ...getHtmlPlugins(["index"]),
+      },
     ],
-    resolve: {
-        extensions: [".tsx", ".ts", ".js"],
-    },
-    output: {
-        path: path.join(__dirname, "dist/js"),
-        filename: "[name].js",
-    },
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: 'public', to: '.' },
+        { 
+          from: '**/*.png', 
+          to: 'images/[name][ext]',
+          context: 'public'
+        },
+      ], 
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }),
+  ],
 };
-
-function getHtmlPlugins(chunks) {
-    return chunks.map(
-        (chunk) =>
-            new HTMLPlugin({
-                title: "React extension",
-                filename: `${chunk}.html`,
-                chunks: [chunk],
-            })
-    );
-}

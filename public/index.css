@@ -1,0 +1,91 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+    background-color: white;
+    width: 100%;
+    /* border-radius: 210px; */
+    background: none;
+}
+
+body {
+    border-radius: 100px;
+}
+
+.card {
+    border: 2px solid rgb(223, 223, 223);
+    /* padding: 20px 100px; */
+    width: 90%;
+    /* border-radius: 20px; */
+    /* padding: 10px; */
+}
+
+.button {
+    background: linear-gradient(45deg, #B16F46, #4B1E3A);
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: medium;
+    width: 100%;
+}
+
+.beta {
+    border-radius: 12px;
+    border: none;
+    background-color: #F5F7FA;
+    color: rgb(119, 119, 119);
+    padding: 10px 0px;
+    width: 40%;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(156, 156, 156, 0.1);
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+
+.logoSection {
+    display: flex;
+    gap: 10px;
+}
+
+.headSection {
+    border-bottom: 1.5px solid #dee0e4;
+    border-radius: 0px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    display: flex;
+    justify-content: end;
+}
+
+input {
+    border: none;
+    padding: 20px;
+    width: 100%;
+    background-color: #F5F7FA;
+    border-radius: 15px;
+}
+
+input::placeholder {
+    color: #99A0AE;
+    opacity: 1;
+    font-size: 16px;
+}
+
+.buttonSection {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
